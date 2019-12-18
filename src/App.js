@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoForm from "./components/TodoForm";
+import Header from "./components/layout/Header";
 import "./App.css";
 import Todos from "./components/Todos";
 
@@ -30,29 +31,41 @@ class App extends Component {
     this.setState({ todos });
   };
 
-  checkboxChanged = (event, todoId) => {
-    let todos = this.state.todos;
-    todos = todos.map(todo => {
-      if (todo.id === todoId) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
+  checkboxChanged = todoId => {
+    // let todos = this.state.todos;
+    // todos = todos.map(todo => {
+    //   if (todo.id === todoId) {
+    //     todo.completed = !todo.completed;
+    //   }
+    //   return todo;
+    // });
+
+    // this.setState({ todos });
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === todoId) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
     });
-
-    this.setState({ todos });
-    // console.log(todos);
   };
-
+  delTodo = id => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
+    });
+  };
   render() {
     return (
       <div className="App">
-        <h1>Todo Manager</h1>
+        <Header />
         <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
         <div className="TodoList">
           <Todos
             style={{ textAlign: "right" }}
             todos={this.state.todos}
             checkboxChanged={this.checkboxChanged}
+            delTodo={this.delTodo}
           />
         </div>
       </div>
