@@ -13,3 +13,11 @@ a {
   color: #333;
   text-decoration: none;
 }
+
+.App {
+  text-align: center;
+}
+.TodoList {
+  text-align: left;
+  margin: 0px 323px 100px 323px;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TodoForm from "./components/TodoForm";
 import "./App.css";
 import Todos from "./components/Todos";
 
@@ -13,20 +14,47 @@ class App extends Component {
       {
         id: 2,
         title: "Dinner",
-        completed: false
+        completed: true
       },
       {
         id: 3,
         title: "Meeting",
-        completed: false
+        completed: true
       }
     ]
   };
+
+  addTodo = newTodo => {
+    const todos = this.state.todos;
+    todos.push(newTodo);
+    this.setState({ todos });
+  };
+
+  checkboxChanged = (event, todoId) => {
+    let todos = this.state.todos;
+    todos = todos.map(todo => {
+      if (todo.id === todoId) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.setState({ todos });
+    // console.log(todos);
+  };
+
   render() {
-    // console.log(this.state.todos);
     return (
       <div className="App">
-        <Todos todos={this.state.todos} />
+        <h1>Todo Manager</h1>
+        <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
+        <div className="TodoList">
+          <Todos
+            style={{ textAlign: "right" }}
+            todos={this.state.todos}
+            checkboxChanged={this.checkboxChanged}
+          />
+        </div>
       </div>
     );
   }
