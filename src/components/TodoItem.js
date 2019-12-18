@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 export class TodoItem extends Component {
   completedStyle = completed => {
@@ -12,35 +19,32 @@ export class TodoItem extends Component {
   render() {
     const { id, title, completed } = this.props.todo;
     return (
-      <div style={this.completedStyle(completed)}>
-        <span>
-          <input
+      <ListItem style={this.completedStyle(completed)}>
+        <ListItemIcon>
+          <Checkbox
+            color="primary"
             type="checkbox"
             defaultChecked={completed}
-            // onChange={e => this.props.checkboxChanged(e, id)}
             onChange={this.props.checkboxChanged.bind(this, id)}
           />
-        </span>
-        <span>{title}</span>
-        <span>
-          <button
+        </ListItemIcon>
+        <ListItemText>{title}</ListItemText>
+        <ListItemSecondaryAction>
+          <IconButton
+            size="small"
+            color="secondary"
+            aria-label="add"
             style={buttonStyle}
             onClick={this.props.delTodo.bind(this, id)}
           >
-            x
-          </button>
-        </span>
-      </div>
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
     );
   }
 }
 const buttonStyle = {
-  backgroundColor: "#ff0000",
-  color: "#fff",
-  border: "none",
-  padding: "5px 10px",
-  borderRadius: "50%",
-  cursor: "pointer",
-  float: "right"
+  float: "center"
 };
 export default TodoItem;

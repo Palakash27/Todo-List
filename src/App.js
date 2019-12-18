@@ -3,6 +3,7 @@ import TodoForm from "./components/TodoForm";
 import Header from "./components/layout/Header";
 import "./App.css";
 import Todos from "./components/Todos";
+import Container from "@material-ui/core/Container";
 
 class App extends Component {
   state = {
@@ -32,15 +33,6 @@ class App extends Component {
   };
 
   checkboxChanged = todoId => {
-    // let todos = this.state.todos;
-    // todos = todos.map(todo => {
-    //   if (todo.id === todoId) {
-    //     todo.completed = !todo.completed;
-    //   }
-    //   return todo;
-    // });
-
-    // this.setState({ todos });
     this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.id === todoId) {
@@ -57,7 +49,7 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
+      <Container>
         <Header />
         <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
         <div className="TodoList">
@@ -68,7 +60,7 @@ class App extends Component {
             delTodo={this.delTodo}
           />
         </div>
-      </div>
+      </Container>
     );
   }
 }

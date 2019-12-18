@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import Container from "@material-ui/core/Container";
 
 export class TodoForm extends Component {
   constructor(props) {
@@ -24,20 +28,30 @@ export class TodoForm extends Component {
       );
       this.props.addTodo(newTodo);
     }
-    document.getElementById("newTodo").value = "";
-    this.setState({ title: e.target.value });
+    // document.getElementById("newTodo").value = "";
+    this.setState({ title: "" });
   };
   render() {
     return (
-      <form>
-        <input
-          id="newTodo"
-          type="text"
-          placeholder="Enter Todo"
-          onChange={this.handleTodoChange}
-        />
-        <input type="submit" onClick={this.formSubmit} />
-      </form>
+      <Container>
+        <form onSubmit={this.formSubmit}>
+          <TextField
+            id="newTodo"
+            type="text"
+            value={this.state.title}
+            onChange={this.handleTodoChange}
+            label="Enter Todo"
+          />
+          <Fab
+            size="small"
+            color="primary"
+            aria-label="add"
+            onClick={this.formSubmit}
+          >
+            <AddIcon />
+          </Fab>
+        </form>
+      </Container>
     );
   }
 }
