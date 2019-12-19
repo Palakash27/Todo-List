@@ -11,7 +11,6 @@ export class TodoItem extends Component {
   TodoStyle = completed => {
     return {
       backgroundColor: "rgb(183, 180, 180)",
-      padding: "5px",
       borderBottom: "1px #ccc dotted",
       textDecoration: completed ? "line-through" : "none"
     };
@@ -19,7 +18,7 @@ export class TodoItem extends Component {
   render() {
     const { id, title, completed } = this.props.todo;
     return (
-      <ListItem style={this.TodoStyle(completed)}>
+      <ListItem style={this.TodoStyle(completed)} button>
         <ListItemIcon>
           <Checkbox
             color="primary"
