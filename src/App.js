@@ -47,7 +47,7 @@ class App extends Component {
           <Header />
           <Route
             exact
-            path="/"
+            path="Todo-List//"
             render={props => (
               <>
                 <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
