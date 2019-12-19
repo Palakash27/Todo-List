@@ -1,30 +1,19 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import TodoForm from "./components/TodoForm";
 import Header from "./components/layout/Header";
 import "./App.css";
 import Todos from "./components/Todos";
 import Container from "@material-ui/core/Container";
+import uuid from "uuid";
+import About from "./components/pages/About";
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Take out trash",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "Dinner",
-        completed: true
-      },
-      {
-        id: 3,
-        title: "Meeting",
-        completed: true
-      }
-    ]
+    todos: []
   };
+
+  componentDidMount() {}
 
   addTodo = newTodo => {
     const todos = this.state.todos;
@@ -49,18 +38,27 @@ class App extends Component {
   };
   render() {
     return (
-      <Container>
-        <Header />
-        <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
-        <div className="TodoList">
-          <Todos
-            style={{ textAlign: "right" }}
-            todos={this.state.todos}
-            checkboxChanged={this.checkboxChanged}
-            delTodo={this.delTodo}
+      <Router>
+        <Container>
+          <Header />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <>
+                <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
+                <Todos
+                  style={{ textAlign: "right" }}
+                  todos={this.state.todos}
+                  checkboxChanged={this.checkboxChanged}
+                  delTodo={this.delTodo}
+                />
+              </>
+            )}
           />
-        </div>
-      </Container>
+          <Route path="/about" component={About} />
+        </Container>
+      </Router>
     );
   }
 }

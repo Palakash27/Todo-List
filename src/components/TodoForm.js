@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Container from "@material-ui/core/Container";
+import uuid from "uuid";
 
 export class TodoForm extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export class TodoForm extends Component {
     };
   }
   genTodo = (id, title, completed = false) => ({
-    id,
+    id: uuid.v4(),
     title,
     completed
   });
@@ -28,19 +29,20 @@ export class TodoForm extends Component {
       );
       this.props.addTodo(newTodo);
     }
-    // document.getElementById("newTodo").value = "";
     this.setState({ title: "" });
   };
   render() {
     return (
       <Container>
-        <form onSubmit={this.formSubmit}>
+        <form onSubmit={this.formSubmit} style={formStyle}>
           <TextField
             id="newTodo"
+            name="title"
             type="text"
             value={this.state.title}
             onChange={this.handleTodoChange}
-            label="Enter Todo"
+            label="Add Todo"
+            style={{ flex: 1 }}
           />
           <Fab
             size="small"
@@ -55,5 +57,9 @@ export class TodoForm extends Component {
     );
   }
 }
-
+const formStyle = {
+  textAlign: "center",
+  padding: "5px",
+  display: "flex"
+};
 export default TodoForm;

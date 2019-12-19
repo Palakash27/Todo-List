@@ -8,10 +8,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 export class TodoItem extends Component {
-  completedStyle = completed => {
+  TodoStyle = completed => {
     return {
       backgroundColor: "rgb(183, 180, 180)",
-      padding: "10px",
+      padding: "5px",
       borderBottom: "1px #ccc dotted",
       textDecoration: completed ? "line-through" : "none"
     };
@@ -19,7 +19,7 @@ export class TodoItem extends Component {
   render() {
     const { id, title, completed } = this.props.todo;
     return (
-      <ListItem style={this.completedStyle(completed)}>
+      <ListItem style={this.TodoStyle(completed)}>
         <ListItemIcon>
           <Checkbox
             color="primary"
