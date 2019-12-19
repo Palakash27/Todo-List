@@ -47,7 +47,7 @@ class App extends Component {
           <Header />
           <Route
             exact
-            path="Todo-List//"
+            path="/Todo-List/"
             render={props => (
               <>
                 <TodoForm todo={this.state.todos} addTodo={this.addTodo} />
@@ -60,7 +60,7 @@ class App extends Component {
               </>
             )}
           />
-          <Route path="/about" component={About} />
+          <Route path="/Todo-List/about" component={About} />
         </Container>
       </Router>
     );
