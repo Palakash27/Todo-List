@@ -5,15 +5,19 @@ import Header from "./components/layout/Header";
 import "./App.css";
 import Todos from "./components/Todos";
 import Container from "@material-ui/core/Container";
-import uuid from "uuid";
 import About from "./components/pages/About";
+import axios from "axios";
 
 class App extends Component {
   state = {
     todos: []
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=50")
+      .then(res => this.setState({ todos: res.data }));
+  }
 
   addTodo = newTodo => {
     const todos = this.state.todos;
