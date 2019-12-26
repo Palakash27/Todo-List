@@ -1,8 +1,8 @@
 # Welcome to Todo List App!
 
 Hi Everyone!
-This is a todo list app which shows things to do.
- Data is coming from [https://jsonplaceholder.typicode.com/todos](https://jsonplaceholder.typicode.com/todos) API with material UI.
+This is a material UI todo list app which shows things to do.
+ Data is coming from [https://jsonplaceholder.typicode.com/todos](https://jsonplaceholder.typicode.com/todos) API.
 
 
 ## Routes
